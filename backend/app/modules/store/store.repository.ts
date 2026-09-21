@@ -12,4 +12,18 @@ export class StoreRepository {
 
     return response.rows;
   }
+
+  async findById(targetStoreId: string): Promise<IStore | null> {
+    const response = await this.db.query<IStore>(
+      `
+      SELECT id, name, location, updated_at, created_at
+      FROM stores
+      WHERE id = $1
+      LIMIT 1;
+    `,
+      [targetStoreId],
+    );
+
+    return response.rows[0] ?? null;
+  }
 }
