@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "es2022",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "strict": true,
+    "rootDir": "./app",
+    "outDir": "./build",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "declaration": true,
+    "skipLibCheck": true,
+    "paths": {
+      "@app/*": ["./app/*"]
+    }
+  },
+  "include": ["app/**/*.ts"],
+  "exclude": ["node_modules", "build"]
+}
