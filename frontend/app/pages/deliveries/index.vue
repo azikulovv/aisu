@@ -5,7 +5,7 @@ import { Deliveries } from "~/widgets/delivery";
 
 <template>
   <div class="space-y-3">
-    <NuxtLink to="/delivery/create">
+    <NuxtLink to="/deliveries/create">
       <BaseButton class="w-full cursor-pointer" variant="primary">
         Создать доставку
       </BaseButton>
