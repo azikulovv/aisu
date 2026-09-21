@@ -1,11 +1,15 @@
 import { env } from "@app/common/config";
 import express from "express";
+import { pool } from "./infrastructure/db";
 
 const app = express();
 
-app.get("/health", (_req, res) => {
+app.get("/health", async (_req, res) => {
+  await pool.connect();
+
   res.json({
     api: "ok",
+    database: "ok",
   });
 });
 
