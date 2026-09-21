@@ -13,6 +13,11 @@ const envSchema = v.object({
     v.minValue(1, "PORT должен быть больше 0"),
   ),
 
+  JWT_SECRET: v.pipe(
+    v.string(),
+    v.minLength(1, "Переменная JWT_SECRET обязательна"),
+  ),
+
   POSTGRES_DB: v.pipe(
     v.string(),
     v.minLength(1, "Переменная POSTGRES_DB обязательна"),
