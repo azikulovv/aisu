@@ -1,8 +1,11 @@
 <script setup lang="ts">
-import { useStores } from "~/entities/store/composables/useStores";
-import StoreCard from "~/entities/store/ui/store-card.vue";
+import { StoreCard, useStores } from "~/entities/store";
 
-const { stores } = useStores();
+const { stores, loadStores } = useStores();
+
+onMounted(() => {
+  loadStores();
+});
 </script>
 
 <template>

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ArrowLeft } from 'lucide-vue-next';
 import { BaseButton } from "~/shared/ui";
 </script>
 

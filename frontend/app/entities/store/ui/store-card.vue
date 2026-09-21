@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import type { Store } from "../composables/useStores";
+import { ChevronRight } from "lucide-vue-next";
+import type { Store } from "../domain/types";
 
 defineProps<{ store: Store }>();
 </script>
@@ -14,9 +15,7 @@ defineProps<{ store: Store }>();
         <!-- Status -->
         <span
           class="h-2 w-2 shrink-0 rounded-full"
-          :class="
-            store.isActive ? 'bg-(--color-success)' : 'bg-(--color-overlay-1)'
-          "
+          :class="true ? 'bg-(--color-success)' : 'bg-(--color-overlay-1)'"
         />
 
         <h3 class="truncate text-sm font-semibold text-(--color-text)">
@@ -40,17 +39,7 @@ defineProps<{ store: Store }>();
     <div
       class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-(--color-base) text-(--color-subtext-0)"
     >
-      <svg
-        class="h-4 w-4"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      >
-        <path d="m9 18 6-6-6-6" />
-      </svg>
+      <ChevronRight :size="16" />
     </div>
   </article>
 </template>

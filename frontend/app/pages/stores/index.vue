@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { BaseButton } from "~/shared/ui";
-import StoreList from "~/widgets/store/ui/store-list.vue";
+import { StoreList } from "~/widgets/store";
 </script>
 
 <template>

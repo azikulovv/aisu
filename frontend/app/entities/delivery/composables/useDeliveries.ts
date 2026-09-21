@@ -1,47 +1,21 @@
-export interface Delivery {
-  companyName: string;
-  productName: string;
-  productsCount: number;
-  isPaid: boolean;
-  deliveryDate: string;
-  deliveryTime: string;
-}
+import type { Delivery } from "../domain/types";
 
 export const useDeliveries = () => {
-  const deliveries = useState<Delivery[]>("state:deliveries", () => [
-    {
-      companyName: "Guangzhou Trading Co.",
-      productName: "Apple AirPods Pro 2",
-      productsCount: 120,
-      isPaid: true,
-      deliveryDate: "21 сентября 2026",
-      deliveryTime: "14:30",
-    },
-    {
-      companyName: "Guangzhou Trading Co.",
-      productName: "Apple AirPods Pro 2",
-      productsCount: 120,
-      isPaid: true,
-      deliveryDate: "21 сентября 2026",
-      deliveryTime: "14:30",
-    },
-    {
-      companyName: "Guangzhou Trading Co.",
-      productName: "Apple AirPods Pro 2",
-      productsCount: 120,
-      isPaid: false,
-      deliveryDate: "21 сентября 2026",
-      deliveryTime: "14:30",
-    },
-    {
-      companyName: "Guangzhou Trading Co.",
-      productName: "Apple AirPods Pro 2",
-      productsCount: 120,
-      isPaid: true,
-      deliveryDate: "21 сентября 2026",
-      deliveryTime: "14:30",
-    },
-  ]);
+  const deliveries = useState<Delivery[]>("state:deliveries", () => []);
 
-  return { deliveries };
+  const loadDeliveries = async (storeId: string) => {
+    deliveries.value = [
+      {
+        id: "1",
+        companyName: "Guangzhou Trading Co.",
+        productName: "Apple AirPods Pro 2",
+        productsCount: 120,
+        isPaid: true,
+        createdAt: "createdat",
+        updatedAt: "updatedat",
+      },
+    ];
+  };
+
+  return { deliveries, loadDeliveries };
 };
