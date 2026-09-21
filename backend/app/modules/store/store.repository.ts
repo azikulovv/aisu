@@ -1,5 +1,5 @@
 import type { Pool } from "pg";
-import type { IStore } from "./store.interface";
+import type { ICreateStoreDto, IStore } from "./store.interface";
 
 export class StoreRepository {
   constructor(private readonly db: Pool) {}
@@ -22,6 +22,21 @@ export class StoreRepository {
       LIMIT 1;
     `,
       [targetStoreId],
+    );
+
+    return response.rows[0] ?? null;
+  }
+
+  async create({ name, location }: ICreateStoreDto): Promise<IStore | null> {
+    const response = await this.db.query<IStore>(
+      `INSERT INTO stores (
+        name, location, updated_at
+      )
+      VALUES (
+        $1, $2, $3
+      );
+    `,
+      [name, location, Date.now()],
     );
 
     return response.rows[0] ?? null;

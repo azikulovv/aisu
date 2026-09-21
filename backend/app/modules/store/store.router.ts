@@ -5,3 +5,4 @@ export const storeRouter: Router = express.Router();
 
 storeRouter.get("/", controller.getStores);
 storeRouter.get("/:id", controller.getStore);
+storeRouter.get("/", );
