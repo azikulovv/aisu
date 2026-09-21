@@ -26,7 +26,7 @@ withDefaults(defineProps<Props>(), {
   <button
     :type="type"
     :disabled="disabled || loading"
-    class="inline-flex items-center justify-center gap-2 rounded-[var(--radius-md)] font-[var(--font-sans)] font-semibold outline-none transition-all duration-150 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50 focus-visible:ring-2 focus-visible:ring-[var(--color-primary)]/20"
+    class="inline-flex items-center justify-center gap-2 rounded-md font-(--font-sans) outline-none transition-all duration-150 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50 focus-visible:ring-2 focus-visible:ring-(--color-primary)/20"
     :class="[
       {
         /* Sizes */
@@ -35,19 +35,19 @@ withDefaults(defineProps<Props>(), {
         'h-12 px-5 text-sm': size === 'lg',
 
         /* Primary */
-        'bg-[var(--color-primary)] text-white hover:brightness-95':
+        'bg-(--color-primary) text-white hover:brightness-95':
           variant === 'primary',
 
         /* Secondary */
-        'border border-[var(--color-border)] bg-[var(--color-surface-0)] text-[var(--color-text)] hover:bg-[var(--color-base)]':
+        'border border-(--color-border) bg-(--color-surface-0) text-(--color-text) hover:bg-(--color-base)':
           variant === 'secondary',
 
         /* Danger */
-        'bg-[var(--color-danger)] text-white hover:brightness-95':
+        'bg-(--color-danger) text-white hover:brightness-95':
           variant === 'danger',
 
         /* Ghost */
-        'bg-transparent text-[var(--color-subtext-1)] hover:bg-[var(--color-mantle)] hover:text-[var(--color-text)]':
+        'bg-transparent text-(--color-subtext-1) hover:bg-(--color-mantle) hover:text-(--color-text)':
           variant === 'ghost',
       },
     ]"

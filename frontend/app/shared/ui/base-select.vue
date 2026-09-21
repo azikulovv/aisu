@@ -27,11 +27,11 @@ const emit = defineEmits<{
 </script>
 
 <template>
-  <div class="w-full font-[var(--font-sans)]">
+  <div class="w-full font-(--font-sans)">
     <!-- Label -->
     <label
       v-if="label"
-      class="mb-1.5 block text-sm font-medium text-[var(--color-text)]"
+      class="mb-1.5 block text-sm font-medium text-(--color-text)"
     >
       {{ label }}
     </label>
@@ -41,7 +41,7 @@ const emit = defineEmits<{
       <select
         :value="modelValue"
         :disabled="disabled"
-        class="h-11 w-full appearance-none rounded-md border border-[var(--color-border)] bg-[var(--color-surface-0)] px-3.5 pr-10 text-sm font-medium text-[var(--color-text)] outline-none transition duration-150 focus:border-[var(--color-primary)] focus:ring-2 focus:ring-[var(--color-primary)]/10 disabled:cursor-not-allowed disabled:opacity-50"
+        class="h-11 w-full appearance-none rounded-md border border-(--color-border) bg-(--color-surface-0) px-3.5 pr-10 text-sm font-medium text-(--color-text) outline-none transition duration-150 focus:border-(--color-primary) focus:ring-2 focus:ring-(--color-primary)/10 disabled:cursor-not-allowed disabled:opacity-50"
         @change="
           emit('update:modelValue', ($event.target as HTMLSelectElement).value)
         "
@@ -61,7 +61,7 @@ const emit = defineEmits<{
 
       <!-- Arrow -->
       <svg
-        class="pointer-events-none absolute right-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-[var(--color-subtext-0)]"
+        class="pointer-events-none absolute right-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-(--color-subtext-0)"
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
@@ -74,10 +74,7 @@ const emit = defineEmits<{
     </div>
 
     <!-- Error -->
-    <p
-      v-if="error"
-      class="mt-1.5 text-xs font-medium text-[var(--color-danger)]"
-    >
+    <p v-if="error" class="mt-1.5 text-xs font-medium text-(--color-danger)">
       {{ error }}
     </p>
   </div>
