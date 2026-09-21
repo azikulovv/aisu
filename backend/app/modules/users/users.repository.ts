@@ -1,7 +1,7 @@
 import type { Pool } from "pg";
 import { ICreateUserDto, IPublicUser } from "./users.interface";
 
-export class StoreRepository {
+export class UsersRepository {
   constructor(private readonly db: Pool) {}
 
   async create(dto: ICreateUserDto): Promise<IPublicUser> {
