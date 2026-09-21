@@ -1,4 +1,4 @@
-import { IStore } from "./store.interface";
+import { ICreateStoreDto, IStore } from "./store.interface";
 import { StoreRepository } from "./store.repository";
 
 export class StoreService {
@@ -10,5 +10,9 @@ export class StoreService {
 
   async getStoreById(targetStoreId: string): Promise<IStore | null> {
     return await this.storeRepository.findById(targetStoreId);
+  }
+
+  async createStore(dto: ICreateStoreDto): Promise<IStore> {
+    return await this.storeRepository.create(dto);
   }
 }

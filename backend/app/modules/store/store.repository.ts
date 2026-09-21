@@ -27,18 +27,20 @@ export class StoreRepository {
     return response.rows[0] ?? null;
   }
 
-  async create({ name, location }: ICreateStoreDto): Promise<IStore | null> {
+  async create({ name, location }: ICreateStoreDto): Promise<IStore> {
     const response = await this.db.query<IStore>(
       `INSERT INTO stores (
-        name, location, updated_at
+        name, location
       )
       VALUES (
-        $1, $2, $3
-      );
+        $1, $2
+      )
+      RETURNING
+        id, name, location, updated_at, created_at;
     `,
-      [name, location, Date.now()],
+      [name, location],
     );
 
-    return response.rows[0] ?? null;
+    return response.rows[0];
   }
 }

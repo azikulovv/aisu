@@ -17,4 +17,15 @@ export class StoreController {
 
     res.json({ store });
   };
+
+  createStore = async (req: Request, res: Response) => {
+    const payload = req.body;
+
+    const createdStore = await this.storeService.createStore(payload);
+
+    res.status(201).json({
+      store: createdStore,
+      message: "Магазин успешно создан!",
+    });
+  };
 }
