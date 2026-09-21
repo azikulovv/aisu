@@ -1,7 +1,7 @@
 import type { StoreItem } from "../domain/types";
 
 export const useStore = () => {
-  const store = useState<StoreItem | null>("state:stores", () => null);
+  const store = useState<StoreItem | null>("state:store", () => null);
 
   const loadStore = async () => {
     store.value = {

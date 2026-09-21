@@ -1,4 +1,4 @@
-import type { Delivery } from "~/entities/delivery/composables/useDeliveries";
+import type { Delivery } from "~/entities/delivery/domain/types";
 
 export interface Store {
   id: string;
