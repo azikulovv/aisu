@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Home, Package } from "lucide-vue-next";
+import { Home, Package, Store } from "lucide-vue-next";
 
 const items = [
   {
@@ -9,25 +9,20 @@ const items = [
   },
   {
     icon: Package,
-    to: "/deliveries",
+    to: "/delivery",
     label: "Поставки",
   },
-  // {
-  //   icon: Boxes,
-  //   to: "/products",
-  //   label: "Товары",
-  // },
-  // {
-  //   icon: UserRound,
-  //   to: "/profile",
-  //   label: "Профиль",
-  // },
+  {
+    icon: Store,
+    to: "/store",
+    label: "Магазины",
+  },
 ];
 </script>
 
 <template>
   <nav
-    class="fixed bottom-4 left-1/2 z-50 -translate-x-1/2 rounded-[20px] border border-(--color-border) bg-(--color-surface-0) p-1.5 font-(--font-sans) shadow-(--shadow-md) w-[calc(100%-(--spacing(4)*2))]"
+    class="fixed bottom-4 left-1/2 z-50 -translate-x-1/2 rounded-[20px] border border-(--color-border) bg-(--color-surface-0) p-1.5 font-(--font-sans) shadow-(--shadow-md) w-[calc(100%-(--spacing(6)*2))]"
     aria-label="Основная навигация"
   >
     <div class="flex items-center gap-1 w-full">
