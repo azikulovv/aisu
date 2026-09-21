@@ -11,7 +11,7 @@ const { stores } = useStores();
 
     <div class="space-y-3">
       <template v-for="(store, index) in stores" :key="index">
-        <NuxtLink :to="`/store/${store.name}`" class="block">
+        <NuxtLink :to="`/stores/${store.name}`" class="block">
           <StoreCard :store="store" />
         </NuxtLink>
       </template>

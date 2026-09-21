@@ -10,7 +10,7 @@ const { deliveries } = useDeliveries();
 
     <div class="space-y-3">
       <template v-for="(delivery, index) in deliveries" :key="index">
-        <NuxtLink :to="delivery.productName" class="block">
+        <NuxtLink :to="`/deliveries/${delivery.productName}`" class="block">
           <DeliveryCard :delivery="delivery" />
         </NuxtLink>
       </template>

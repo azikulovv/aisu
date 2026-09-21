@@ -9,12 +9,12 @@ const items = [
   },
   {
     icon: Package,
-    to: "/delivery",
+    to: "/deliveries",
     label: "Поставки",
   },
   {
     icon: Store,
-    to: "/store",
+    to: "/stores",
     label: "Магазины",
   },
 ];

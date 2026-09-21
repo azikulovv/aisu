@@ -78,7 +78,7 @@ withDefaults(defineProps<Props>(), {
     </svg>
 
     <!-- Content -->
-    <span>
+    <span class="flex items-center gap-x-2">
       <slot />
     </span>
   </button>
