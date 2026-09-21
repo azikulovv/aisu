@@ -1,0 +1,66 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap");
+
+:root {
+  /* ─────────────────────────────
+     Catppuccin Latte
+  ───────────────────────────── */
+
+  /* Base */
+  --color-base: #eff1f5;
+  --color-mantle: #e6e9ef;
+  --color-crust: #dce0e8;
+
+  /* Surface */
+  --color-surface-0: #f7f8fa;
+  --color-surface-1: #e6e9ef;
+  --color-surface-2: #dce0e8;
+
+  /* Text */
+  --color-text: #4c4f69;
+  --color-subtext-1: #6c6f85;
+  --color-subtext-0: #8c8fa1;
+
+  /* Overlay */
+  --color-overlay-2: #9ca0b0;
+  --color-overlay-1: #acb0be;
+  --color-overlay-0: #b8b9c6;
+
+  /* Accent */
+  --color-blue: #1e66f5;
+  --color-lavender: #7287fd;
+  --color-sapphire: #209fb5;
+  --color-sky: #04a5e5;
+  --color-teal: #179299;
+  --color-green: #40a02b;
+  --color-yellow: #df8e1d;
+  --color-peach: #fe640b;
+  --color-maroon: #e64553;
+  --color-red: #d20f39;
+  --color-mauve: #8839ef;
+  --color-pink: #ea76cb;
+
+  /* Semantic */
+  --color-primary: var(--color-blue);
+  --color-success: var(--color-green);
+  --color-warning: var(--color-yellow);
+  --color-danger: var(--color-red);
+  --color-info: var(--color-sapphire);
+
+  /* Border */
+  --color-border: var(--color-crust);
+
+  /* Typography */
+  --font-sans: Manrope, sans-serif;
+
+  /* Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 24px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgb(76 79 105 / 0.05);
+  --shadow-md: 0 4px 12px rgb(76 79 105 / 0.08);
+  --shadow-lg: 0 8px 24px rgb(76 79 105 / 0.1);
+}
