@@ -5,18 +5,35 @@ import * as v from "valibot";
 type EnvData = v.InferOutput<typeof envSchema>;
 
 const envSchema = v.object({
-  PORT: v.pipe(v.string("Переменная PORT должна быть числом!"), v.minLength(1)),
-  POSTGRES_NAME: v.pipe(
-    v.string("Переменная POSTGRES_NAME должна быть числом!"),
-    v.minLength(1),
+  PORT: v.pipe(
+    v.string(),
+    v.minLength(1, "Переменная PORT обязательна"),
+    v.transform(Number),
+    v.number("Переменная PORT должна быть числом"),
+    v.minValue(1, "PORT должен быть больше 0"),
   ),
+
+  POSTGRES_DB: v.pipe(
+    v.string(),
+    v.minLength(1, "Переменная POSTGRES_DB обязательна"),
+  ),
+
   POSTGRES_USER: v.pipe(
-    v.string("Переменная POSTGRES_USER должна быть числом!"),
-    v.minLength(1),
+    v.string(),
+    v.minLength(1, "Переменная POSTGRES_USER обязательна"),
   ),
+
   POSTGRES_PASSWORD: v.pipe(
-    v.string("Переменная POSTGRES_PASSWORD должна быть числом!"),
-    v.minLength(1),
+    v.string(),
+    v.minLength(1, "Переменная POSTGRES_PASSWORD обязательна"),
+  ),
+
+  POSTGRES_PORT: v.pipe(
+    v.string(),
+    v.minLength(1, "Переменная POSTGRES_PORT обязательна"),
+    v.transform(Number),
+    v.number("Переменная POSTGRES_PORT должна быть числом"),
+    v.minValue(1, "POSTGRES_PORT должен быть больше 0"),
   ),
 });
 

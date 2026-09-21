@@ -4,8 +4,8 @@
   "scripts": {
     "dev": "tsx watch app/server.ts",
     "build": "tsup",
-    "migrate": "tsx shan.ts",
-    "start": "node build/server.js"
+    "start": "node build/server.js",
+    "db:migrate": "tsx app/cli/migrate.ts"
   },
   "devEngines": {
     "packageManager": {
