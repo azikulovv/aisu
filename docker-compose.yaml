@@ -47,10 +47,11 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
     restart: unless-stopped
+    env_file:
+      - ./frontend/.env
     environment:
       HOST: 0.0.0.0
       PORT: 3000
-      NUXT_PUBLIC_API_BASE: ${NUXT_PUBLIC_API_BASE:-http://localhost:3040/api}
     depends_on:
       backend:
         condition: service_healthy
