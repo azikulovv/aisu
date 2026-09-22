@@ -8,7 +8,8 @@ export class StoreRepository {
     const response = await this.db.query<IStore>(
       `SELECT id, name, location, updated_at, created_at
       FROM stores
-      WHERE user_id = $1;
+      WHERE user_id = $1
+      ORDER BY created_at DESC;
     `,
       [userId],
     );
