@@ -1,5 +1,5 @@
 import type { Pool } from "pg";
-import { Delivery } from "./delivery.interface";
+import type { Delivery, ICreateDeliveryDto } from "./delivery.interface";
 
 export class DeliveryRepository {
   constructor(private readonly db: Pool) {}
@@ -30,5 +30,27 @@ export class DeliveryRepository {
     );
 
     return response.rows ?? [];
+  }
+
+  async create({
+    user_id,
+    store_id,
+    product_name,
+    is_paid,
+  }: ICreateDeliveryDto): Promise<Delivery | null> {
+    const response = await this.db.query<Delivery>(
+      `
+      INSERT INTO deliveries (user_id, store_id, product_name, is_paid)
+      SELECT $1, $2, $3, $4
+      WHERE EXISTS (
+        SELECT 1 FROM stores
+        WHERE id = $2 AND user_id = $1
+      )
+      RETURNING id, user_id, store_id, product_name, is_paid, created_at, updated_at;
+    `,
+      [user_id, store_id, product_name, is_paid],
+    );
+
+    return response.rows[0] ?? null;
   }
 }

@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import type { Delivery } from "../composables/useDeliveries";
+import type { Delivery } from '../domain/types';
+
 
 defineProps<{ delivery: Delivery }>();
 </script>

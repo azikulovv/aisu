@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { notFound } from "@app/common/errors/app-error";
 import type { DeliveryService } from "./delivery.service";
 
 export class DeliveryController {
@@ -10,5 +11,23 @@ export class DeliveryController {
     const deliveries = await this.deliveryService.getAllByUserId(userId);
 
     res.json({ deliveries });
+  };
+
+  create = async (req: Request, res: Response) => {
+    const delivery = await this.deliveryService.create({
+      user_id: req.user.userId,
+      store_id: req.body.storeId,
+      product_name: req.body.productName,
+      is_paid: req.body.isPaid,
+    });
+
+    if (!delivery) {
+      throw notFound("Магазин не найден");
+    }
+
+    res.status(201).json({
+      message: "Доставка успешно создана!",
+      delivery,
+    });
   };
 }
