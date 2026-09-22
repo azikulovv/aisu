@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { BaseButton, BaseInput } from "~/shared/ui";
-import { useSignin } from "../composables/useSignin";
+import { useSignin } from "../model/useSignin";
 
 const { form, isSubmitting, submit } = useSignin();
 </script>
@@ -23,6 +23,8 @@ const { form, isSubmitting, submit } = useSignin();
       placeholder="Введите ваш пароль"
     />
 
-    <BaseButton class="w-full" :loading="isSubmitting">Войти</BaseButton>
+    <BaseButton class="w-full" type="submit" :loading="isSubmitting">
+      Войти
+    </BaseButton>
   </form>
 </template>
