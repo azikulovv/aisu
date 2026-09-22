@@ -18,6 +18,11 @@ const envSchema = v.object({
     v.minLength(1, "Переменная JWT_SECRET обязательна"),
   ),
 
+  CORS_ORIGIN: v.pipe(
+    v.string(),
+    v.minLength(1, "Переменная JWT_SECRET обязательна"),
+  ),
+
   POSTGRES_DB: v.pipe(
     v.string(),
     v.minLength(1, "Переменная POSTGRES_DB обязательна"),
