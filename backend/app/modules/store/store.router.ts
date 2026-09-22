@@ -6,7 +6,7 @@ import { createStoreSchema } from "./store.schemas";
 
 export const storeRouter: Router = express.Router();
 
-storeRouter.get("/", controller.getStores);
+storeRouter.get("/", authenticate, controller.getStoresByUserId);
 storeRouter.get("/:id", controller.getStore);
 storeRouter.post(
   "/",

@@ -4,8 +4,8 @@ import { StoreRepository } from "./store.repository";
 export class StoreService {
   constructor(private readonly storeRepository: StoreRepository) {}
 
-  async getAllStores(): Promise<IStore[]> {
-    return await this.storeRepository.findAll();
+  async getAllStoresByUserId(userId: string): Promise<IStore[]> {
+    return await this.storeRepository.findAllByUserId(userId);
   }
 
   async getStoreById(targetStoreId: string): Promise<IStore | null> {

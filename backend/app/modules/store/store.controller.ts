@@ -4,8 +4,10 @@ import { StoreService } from "./store.service";
 export class StoreController {
   constructor(private readonly storeService: StoreService) {}
 
-  getStores = async (_req: Request, res: Response) => {
-    const stores = await this.storeService.getAllStores();
+  getStoresByUserId = async (req: Request, res: Response) => {
+    const userId = req.user.userId;
+
+    const stores = await this.storeService.getAllStoresByUserId(userId);
 
     res.json({ stores });
   };

@@ -4,11 +4,14 @@ import type { ICreateStoreDto, IStore } from "./store.interface";
 export class StoreRepository {
   constructor(private readonly db: Pool) {}
 
-  async findAll(): Promise<IStore[]> {
-    const response = await this.db.query<IStore>(`
-      SELECT id, name, location, updated_at, created_at
-      FROM stores;
-    `);
+  async findAllByUserId(userId: string): Promise<IStore[]> {
+    const response = await this.db.query<IStore>(
+      `SELECT id, name, location, updated_at, created_at
+      FROM stores
+      WHERE user_id = $1;
+    `,
+      [userId],
+    );
 
     return response.rows;
   }
