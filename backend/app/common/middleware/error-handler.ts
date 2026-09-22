@@ -1,7 +1,18 @@
 import type { ErrorRequestHandler } from "express";
+import { ValiError } from "valibot";
 import { AppError } from "../errors/app-error";
 
 export const errorHandler: ErrorRequestHandler = (error, _req, res, _next) => {
+  if (error instanceof ValiError) {
+    return res.status(400).json({
+      error: {
+        code: "VALIDATION_ERROR",
+        message: "Invalid request payload",
+        details: error.issues,
+      },
+    });
+  }
+
   if (error instanceof AppError) {
     return res.status(error.statusCode).json({
       error: {

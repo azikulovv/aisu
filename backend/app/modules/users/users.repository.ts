@@ -1,5 +1,5 @@
 import type { Pool } from "pg";
-import { ICreateUserDto, IPublicUser } from "./users.interface";
+import type { ICreateUserDto, IPublicUser } from "./users.interface";
 
 export class UsersRepository {
   constructor(private readonly db: Pool) {}
@@ -10,7 +10,7 @@ export class UsersRepository {
         email, first_name, last_name, password
       )
       VALUES (
-        $1, $2
+        $1, $2, $3, $4
       )
       RETURNING
         id, email, first_name, last_name, created_at, updated_at;

@@ -1,4 +1,4 @@
-import { NextFunction, Request } from "express";
+import type { NextFunction, Request, Response } from "express";
 
 type Handler = (
   req: Request,

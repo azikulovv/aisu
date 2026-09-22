@@ -9,6 +9,6 @@ export class AuthController {
 
     const result = await this.authService.signup(payload);
 
-    res.json(201).json(result);
+    res.status(201).json(result);
   };
 }

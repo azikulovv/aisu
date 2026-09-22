@@ -2,9 +2,9 @@ import type { NextFunction, Request, Response } from "express";
 import * as v from "valibot";
 
 type Schemas = {
-  body?: v.AnySchema;
-  query?: v.AnySchema;
-  params?: v.AnySchema;
+  body?: v.GenericSchema;
+  query?: v.GenericSchema;
+  params?: v.GenericSchema;
 };
 
 export const validate =
@@ -14,11 +14,11 @@ export const validate =
     }
 
     if (schemas.query) {
-      req.query = v.parse(schemas.query, req.query);
+      req.query = v.parse(schemas.query, req.query) as Request["query"];
     }
 
     if (schemas.params) {
-      req.params = v.parse(schemas.params, req.params);
+      req.params = v.parse(schemas.params, req.params) as Request["params"];
     }
 
     next();
