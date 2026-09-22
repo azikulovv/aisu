@@ -5,7 +5,7 @@ export class DeliveryService {
   constructor(private readonly deliveryRepository: DeliveryRepository) {}
 
   async getAllByUserId(userId: string): Promise<Delivery[]> {
-    return this.deliveryRepository.findAll(userId);
+    return this.deliveryRepository.findAllByUserId(userId);
   }
 
   async getByIdAndUserId(

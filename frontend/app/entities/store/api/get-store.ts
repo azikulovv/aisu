@@ -1,5 +1,6 @@
-import { api } from "~/shared/api/client";
 import { mapDelivery } from "~/entities/delivery/domain/mapper";
+import { api } from "~/shared/api/client";
+import { mapStore } from "../model/mapper";
 import type {
   IGetStoreByIdAndUserIdResponse,
   IGetStoreByIdAndUserIdResponseDto,
@@ -16,11 +17,7 @@ export const getStore = async (
 
   return {
     store: {
-      id: store.id,
-      name: store.name,
-      location: store.location,
-      deliveriesCount: store.deliveries.length,
-      productsCount: 0,
+      ...mapStore(store),
       deliveries: store.deliveries.map(mapDelivery),
     },
   } satisfies IGetStoreByIdAndUserIdResponse;

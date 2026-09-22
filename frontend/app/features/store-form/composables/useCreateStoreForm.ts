@@ -1,4 +1,4 @@
-import { createStore } from "~/entities/store/composables/api/create-store";
+import { createStore } from "~/entities/store/api/create-store";
 
 export interface Form {
   name: string;

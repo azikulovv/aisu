@@ -14,8 +14,7 @@ defineProps<{ store: Store }>();
       <div class="flex items-center gap-2">
         <!-- Status -->
         <span
-          class="h-2 w-2 shrink-0 rounded-full"
-          :class="true ? 'bg-(--color-success)' : 'bg-(--color-overlay-1)'"
+          class="h-2 w-2 shrink-0 rounded-full bg-(--color-success)"
         />
 
         <h3 class="truncate text-sm font-semibold text-(--color-text)">

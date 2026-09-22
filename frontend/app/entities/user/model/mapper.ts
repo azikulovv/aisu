@@ -3,7 +3,8 @@ import type { User } from "./types";
 
 export const mapUser = (dto: UserDto): User => {
   return {
-    ...dto,
+    id: dto.id,
+    email: dto.email,
     firstName: dto.first_name,
     lastName: dto.last_name,
     createdAt: dto.created_at,

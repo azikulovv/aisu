@@ -16,7 +16,7 @@ defineProps<{ deliveries: Delivery[] }>();
     </div>
 
     <div class="space-y-2" v-if="deliveries.length">
-      <template v-for="(delivery, index) in deliveries" :key="index">
+      <template v-for="delivery in deliveries" :key="delivery.id">
         <NuxtLink :to="`/deliveries/${delivery.id}`">
           <HistoryDeliveryCard :delivery="delivery" />
         </NuxtLink>

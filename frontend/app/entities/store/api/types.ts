@@ -1,5 +1,5 @@
 import type { DeliveryDto } from "~/entities/delivery/api/types";
-import type { Store, StoreItem } from "../../model/types";
+import type { Store, StoreItem } from "../model/types";
 
 export interface ICreateStorePayload {
   name: string;
@@ -28,8 +28,22 @@ export interface ICreateStoreResponseDto {
   };
 }
 
+export interface StoreDto {
+  id: string;
+  name: string;
+  location: string;
+  updated_at: string;
+  created_at: string;
+  deliveries_count: number;
+  products_count: number;
+}
+
 export interface IGetStoresByUserIdResponse {
   stores: Store[];
+}
+
+export interface IGetStoresByUserIdResponseDto {
+  stores: StoreDto[];
 }
 
 export interface IGetStoreByIdAndUserIdResponse {
@@ -37,12 +51,7 @@ export interface IGetStoreByIdAndUserIdResponse {
 }
 
 export interface IGetStoreByIdAndUserIdResponseDto {
-  store: {
-    id: string;
-    name: string;
-    location: string;
-    updated_at: string;
-    created_at: string;
+  store: StoreDto & {
     deliveries: DeliveryDto[];
   };
 }

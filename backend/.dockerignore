@@ -4,3 +4,7 @@ build
 .env.*
 !.env.example
 *.log
+
+# Legacy local bot files are not part of the HTTP API.
+app/app.ts
+app/handlers

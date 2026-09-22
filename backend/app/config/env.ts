@@ -20,7 +20,7 @@ const envSchema = v.object({
 
   CORS_ORIGIN: v.pipe(
     v.string(),
-    v.minLength(1, "Переменная JWT_SECRET обязательна"),
+    v.minLength(1, "Переменная CORS_ORIGIN обязательна"),
   ),
 
   POSTGRES_HOST: v.optional(v.string(), "localhost"),

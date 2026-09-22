@@ -6,12 +6,25 @@ export interface SigninPayload {
   password: string;
 }
 
-export interface SigninResponse {
+export interface AuthResponse {
   accessToken: string;
   user: User;
 }
 
-export interface SigninResponseDto {
+export interface AuthResponseDto {
   access_token: string;
   user: UserDto;
 }
+
+export type SigninResponse = AuthResponse;
+export type SigninResponseDto = AuthResponseDto;
+
+export interface SignupPayload {
+  email: string;
+  firstName: string;
+  lastName: string;
+  password: string;
+}
+
+export type SignupResponse = AuthResponse;
+export type SignupResponseDto = AuthResponseDto;

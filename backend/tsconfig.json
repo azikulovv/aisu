@@ -17,5 +17,5 @@
     }
   },
   "include": ["app/**/*.ts"],
-  "exclude": ["node_modules", "build"]
+  "exclude": ["node_modules", "build", "app/app.ts", "app/handlers"]
 }

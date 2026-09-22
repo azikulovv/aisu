@@ -2,7 +2,7 @@
 import { BaseButton, BaseInput } from "~/shared/ui";
 import { useSignin } from "../model/useSignin";
 
-const { form, isSubmitting, submit } = useSignin();
+const { form, isSubmitting, errorMessage, submit } = useSignin();
 </script>
 
 <template>
@@ -22,10 +22,29 @@ const { form, isSubmitting, submit } = useSignin();
       label="Пароль"
       v-model="form.password"
       placeholder="Введите ваш пароль"
+      type="password"
+      autocomplete="current-password"
     />
+
+    <p
+      v-if="errorMessage"
+      class="rounded-md bg-(--color-danger)/10 px-3 py-2 text-sm text-(--color-danger)"
+    >
+      {{ errorMessage }}
+    </p>
 
     <BaseButton class="w-full" type="submit" :loading="isSubmitting">
       Войти
     </BaseButton>
+
+    <p class="text-center text-sm text-(--color-subtext-1)">
+      Нет аккаунта?
+      <NuxtLink
+        to="/auth/signup"
+        class="font-medium text-(--color-primary) hover:underline"
+      >
+        Зарегистрироваться
+      </NuxtLink>
+    </p>
   </form>
 </template>

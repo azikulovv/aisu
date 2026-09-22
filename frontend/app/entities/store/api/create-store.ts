@@ -1,5 +1,5 @@
 import { api } from "~/shared/api/client";
-import { mapCreateStore } from "../../model/mapper";
+import { mapCreateStore } from "../model/mapper";
 import type {
   ICreateStorePayload,
   ICreateStoreResponse,

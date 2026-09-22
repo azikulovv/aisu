@@ -1,4 +1,6 @@
-import { Request, Response } from "express";
+import { notFound } from "@app/common/errors/app-error";
+import type { Request, Response } from "express";
+import type { ICreateStoreRequest } from "./store.interface";
 import { StoreService } from "./store.service";
 
 export class StoreController {
@@ -12,23 +14,25 @@ export class StoreController {
     res.json({ stores });
   };
 
-  getStore = async (req: Request, res: Response) => {
-    const userId = req.user.userId;
-    const targetStoreId = req.params.id as string;
-
+  getStore = async (req: Request<{ id: string }>, res: Response) => {
     const store = await this.storeService.getByIdAndUserId(
-      targetStoreId,
-      userId,
+      req.params.id,
+      req.user.userId,
     );
+
+    if (!store) {
+      throw notFound("Магазин не найден");
+    }
 
     res.json({ store });
   };
 
-  create = async (req: Request, res: Response) => {
-    const payload = req.body;
-
+  create = async (
+    req: Request<Record<string, never>, unknown, ICreateStoreRequest>,
+    res: Response,
+  ) => {
     const createdStore = await this.storeService.create({
-      ...payload,
+      ...req.body,
       user_id: req.user.userId,
     });
 

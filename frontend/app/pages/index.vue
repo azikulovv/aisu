@@ -1,8 +1,6 @@
 <script setup lang="ts">
-import auth from "~/midlleware/auth";
-
 definePageMeta({
-  middleware: auth,
+  middleware: "auth",
 });
 </script>
 

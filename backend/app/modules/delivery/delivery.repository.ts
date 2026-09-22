@@ -1,6 +1,12 @@
 import type { Pool } from "pg";
 import type { Delivery, ICreateDeliveryDto } from "./delivery.interface";
 
+const deliveryFields = (alias: string) => `
+  ${alias}.id, ${alias}.user_id, ${alias}.store_id, s.name AS store_name,
+  ${alias}.product_name, ${alias}.quantity, ${alias}.is_paid,
+  ${alias}.created_at, ${alias}.updated_at
+`;
+
 export class DeliveryRepository {
   constructor(private readonly db: Pool) {}
 
@@ -10,8 +16,7 @@ export class DeliveryRepository {
   ): Promise<Delivery[]> {
     const response = await this.db.query<Delivery>(
       `
-      SELECT d.id, d.user_id, d.store_id, s.name AS store_name,
-             d.product_name, d.quantity, d.is_paid, d.created_at, d.updated_at
+      SELECT ${deliveryFields("d")}
       FROM deliveries d
       JOIN stores s ON s.id = d.store_id
       WHERE d.store_id = $1 AND d.user_id = $2
@@ -23,17 +28,16 @@ export class DeliveryRepository {
     return response.rows ?? [];
   }
 
-  async findAll(id: string): Promise<Delivery[]> {
+  async findAllByUserId(userId: string): Promise<Delivery[]> {
     const response = await this.db.query<Delivery>(
       `
-      SELECT d.id, d.user_id, d.store_id, s.name AS store_name,
-             d.product_name, d.quantity, d.is_paid, d.created_at, d.updated_at
+      SELECT ${deliveryFields("d")}
       FROM deliveries d
       JOIN stores s ON s.id = d.store_id
       WHERE d.user_id = $1
       ORDER BY d.created_at DESC;
     `,
-      [id],
+      [userId],
     );
 
     return response.rows ?? [];
@@ -45,8 +49,7 @@ export class DeliveryRepository {
   ): Promise<Delivery | null> {
     const response = await this.db.query<Delivery>(
       `
-      SELECT d.id, d.user_id, d.store_id, s.name AS store_name,
-             d.product_name, d.quantity, d.is_paid, d.created_at, d.updated_at
+      SELECT ${deliveryFields("d")}
       FROM deliveries d
       JOIN stores s ON s.id = d.store_id
       WHERE d.id = $1 AND d.user_id = $2
@@ -79,9 +82,7 @@ export class DeliveryRepository {
         RETURNING id, user_id, store_id, product_name, quantity,
                   is_paid, created_at, updated_at
       )
-      SELECT i.id, i.user_id, i.store_id, s.name AS store_name,
-             i.product_name, i.quantity, i.is_paid,
-             i.created_at, i.updated_at
+      SELECT ${deliveryFields("i")}
       FROM inserted i
       JOIN stores s ON s.id = i.store_id;
     `,
@@ -105,9 +106,7 @@ export class DeliveryRepository {
         RETURNING id, user_id, store_id, product_name, quantity,
                   is_paid, created_at, updated_at
       )
-      SELECT u.id, u.user_id, u.store_id, s.name AS store_name,
-             u.product_name, u.quantity, u.is_paid,
-             u.created_at, u.updated_at
+      SELECT ${deliveryFields("u")}
       FROM updated u
       JOIN stores s ON s.id = u.store_id;
     `,

@@ -2,7 +2,6 @@ import axios from "axios";
 import { useUser } from "~/entities/user/model/useUser";
 
 export const api = axios.create({
-  baseURL: "http://localhost:3040/api",
   timeout: 5000,
 });
 

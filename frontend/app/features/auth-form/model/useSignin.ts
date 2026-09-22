@@ -1,3 +1,4 @@
+import { getAuthErrorMessage } from "./auth-error";
 import { useUser } from "~/entities/user/model/useUser";
 import { signin } from "../api/signin";
 
@@ -15,8 +16,10 @@ export const useSignin = () => {
   });
 
   const isSubmitting = ref(false);
+  const errorMessage = ref("");
 
   const submit = async () => {
+    errorMessage.value = "";
     isSubmitting.value = true;
 
     try {
@@ -28,10 +31,12 @@ export const useSignin = () => {
       setUser(response.user);
       setToken(response.accessToken);
 
-      navigateTo("/");
-      console.log();
-    } catch (e) {
-      console.error(e);
+      await navigateTo("/");
+    } catch (error) {
+      errorMessage.value = getAuthErrorMessage(
+        error,
+        "Не удалось войти. Проверьте email и пароль",
+      );
     } finally {
       isSubmitting.value = false;
     }
@@ -40,6 +45,7 @@ export const useSignin = () => {
   return {
     form,
     isSubmitting,
+    errorMessage,
     submit,
   };
 };

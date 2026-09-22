@@ -1,15 +1,24 @@
 import type { Pool } from "pg";
-import type { ICreateStoreDto, IStore } from "./store.interface";
+import type {
+  ICreateStoreDto,
+  IStore,
+  IStoreSummary,
+} from "./store.interface";
 
 export class StoreRepository {
   constructor(private readonly db: Pool) {}
 
-  async findAllByUserId(userId: string): Promise<IStore[]> {
-    const response = await this.db.query<IStore>(
-      `SELECT id, name, location, updated_at, created_at
-      FROM stores
-      WHERE user_id = $1
-      ORDER BY created_at DESC;
+  async findAllByUserId(userId: string): Promise<IStoreSummary[]> {
+    const response = await this.db.query<IStoreSummary>(
+      `SELECT s.id, s.name, s.location, s.updated_at, s.created_at,
+             COUNT(d.id)::int AS deliveries_count,
+             COALESCE(SUM(d.quantity), 0)::int AS products_count
+      FROM stores s
+      LEFT JOIN deliveries d
+        ON d.store_id = s.id AND d.user_id = s.user_id
+      WHERE s.user_id = $1
+      GROUP BY s.id, s.name, s.location, s.updated_at, s.created_at
+      ORDER BY s.created_at DESC;
     `,
       [userId],
     );
@@ -20,12 +29,17 @@ export class StoreRepository {
   async findByIdAndUserId(
     targetStoreId: string,
     userId: string,
-  ): Promise<IStore | null> {
-    const response = await this.db.query<IStore>(
+  ): Promise<IStoreSummary | null> {
+    const response = await this.db.query<IStoreSummary>(
       `
-      SELECT id, name, location, updated_at, created_at
-      FROM stores
-      WHERE id = $1 AND user_id = $2
+      SELECT s.id, s.name, s.location, s.updated_at, s.created_at,
+             COUNT(d.id)::int AS deliveries_count,
+             COALESCE(SUM(d.quantity), 0)::int AS products_count
+      FROM stores s
+      LEFT JOIN deliveries d
+        ON d.store_id = s.id AND d.user_id = s.user_id
+      WHERE s.id = $1 AND s.user_id = $2
+      GROUP BY s.id, s.name, s.location, s.updated_at, s.created_at
       LIMIT 1;
     `,
       [targetStoreId, userId],
@@ -43,7 +57,7 @@ export class StoreRepository {
         $1, $2, $3
       )
       RETURNING
-        id, user_id, name, location, updated_at, created_at;
+        id, name, location, updated_at, created_at;
     `,
       [user_id, name, location],
     );

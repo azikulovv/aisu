@@ -1,7 +1,6 @@
-import { Delivery } from "../delivery/delivery.interface";
+import type { Delivery } from "../delivery/delivery.interface";
 
 export interface IStore {
-  user_id: string;
   id: string;
   name: string;
   location: string;
@@ -9,8 +8,22 @@ export interface IStore {
   created_at: string;
 }
 
-export interface IStoreItem extends IStore {
+export interface IStoreSummary extends IStore {
+  deliveries_count: number;
+  products_count: number;
+}
+
+export interface IStoreItem extends IStoreSummary {
   deliveries: Delivery[];
 }
 
-export type ICreateStoreDto = Omit<IStore, "id" | "created_at" | "updated_at">;
+export interface ICreateStoreDto {
+  user_id: string;
+  name: string;
+  location: string;
+}
+
+export interface ICreateStoreRequest {
+  name: string;
+  location: string;
+}

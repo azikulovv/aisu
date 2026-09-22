@@ -83,18 +83,6 @@ export async function migrate() {
 
   await ensureMigrationsTable();
 
-  const migrations = await getMigrations();
-  const applied = await getAppliedMigrations();
-
-  const pending = migrations.filter((migration) => !applied.has(migration.id));
-
-  if (pending.length === 0) {
-    console.log("  ✓ Database is up to date\n");
-    return;
-  }
-
-  console.log(`  ${pending.length} migration(s) pending\n`);
-
   const lock = await pool.connect();
 
   try {
@@ -103,6 +91,19 @@ export async function migrate() {
     await lock.query(`
       SELECT pg_advisory_lock(74321);
     `);
+
+    const migrations = await getMigrations();
+    const applied = await getAppliedMigrations();
+    const pending = migrations.filter(
+      (migration) => !applied.has(migration.id),
+    );
+
+    if (pending.length === 0) {
+      console.log("  ✓ Database is up to date\n");
+      return;
+    }
+
+    console.log(`  ${pending.length} migration(s) pending\n`);
 
     for (const migration of pending) {
       const startedAt = performance.now();
