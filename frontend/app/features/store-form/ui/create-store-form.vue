@@ -8,9 +8,15 @@ const { form, isSubmitting, submit } = useCreateStoreForm();
 <template>
   <form class="space-y-4" @submit.prevent="submit">
     <BaseInput
-      v-model="form.company"
-      label="Компания"
-      placeholder="Введите название компании"
+      v-model="form.name"
+      label="Магазин"
+      placeholder="Введите название магазина"
+    />
+
+    <BaseInput
+      v-model="form.location"
+      label="Адрес"
+      placeholder="Введите адрес магазина"
     />
 
     <BaseButton

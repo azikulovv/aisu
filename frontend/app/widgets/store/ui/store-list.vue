@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { StoreCard, useStores } from "~/entities/store";
+import EmptyState from "~/widgets/empty-state/ui/empty-state.vue";
 
 const { stores, loadStores } = useStores();
 
@@ -9,7 +10,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="space-y-2">
+  <div class="space-y-2" v-if="stores.length">
     <p class="text-sm font-semibold text-(--color-text)">Все магазины</p>
 
     <div class="space-y-3">
@@ -20,4 +21,10 @@ onMounted(() => {
       </template>
     </div>
   </div>
+
+  <EmptyState
+    v-else
+    :title="'У вас пока нет магазинов'"
+    :description="'Создайте первый магазин, чтобы начать добавлять поставки.'"
+  />
 </template>

@@ -1,10 +1,12 @@
 export interface Form {
-  company: string;
+  name: string;
+  location: string;
 }
 
 export const useCreateStoreForm = () => {
   const form = ref<Form>({
-    company: "",
+    name: "",
+    location: "",
   });
 
   const isSubmitting = ref(false);
