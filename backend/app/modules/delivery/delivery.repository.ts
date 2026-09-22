@@ -32,6 +32,23 @@ export class DeliveryRepository {
     return response.rows ?? [];
   }
 
+  async findByIdAndUserId(
+    deliveryId: string,
+    userId: string,
+  ): Promise<Delivery | null> {
+    const response = await this.db.query<Delivery>(
+      `
+      SELECT id, user_id, store_id, product_name, is_paid, created_at, updated_at
+      FROM deliveries
+      WHERE id = $1 AND user_id = $2
+      LIMIT 1;
+    `,
+      [deliveryId, userId],
+    );
+
+    return response.rows[0] ?? null;
+  }
+
   async create({
     user_id,
     store_id,

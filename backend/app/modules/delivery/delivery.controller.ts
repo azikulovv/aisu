@@ -14,6 +14,22 @@ export class DeliveryController {
     res.json({ deliveries });
   };
 
+  getDelivery = async (
+    req: Request<{ id: string }>,
+    res: Response,
+  ) => {
+    const delivery = await this.deliveryService.getByIdAndUserId(
+      req.params.id,
+      req.user.userId,
+    );
+
+    if (!delivery) {
+      throw notFound("Доставка не найдена");
+    }
+
+    res.json({ delivery });
+  };
+
   create = async (
     req: Request<Record<string, never>, unknown, ICreateDeliveryRequest>,
     res: Response,

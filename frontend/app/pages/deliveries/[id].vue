@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useDelivery } from "~/entities/delivery";
-import auth from '~/midlleware/auth';
+import auth from "~/midlleware/auth";
 import {
   DeliveryHeader,
   DeliveryInfo,
@@ -11,48 +11,32 @@ definePageMeta({
   middleware: auth,
 });
 
-const { loadDelivery } = useDelivery();
+const { delivery, error, isLoading, loadDelivery } = useDelivery();
+const route = useRoute();
 
-onMounted(() => {
-  loadDelivery("deliveryId");
+onMounted(async () => {
+  await loadDelivery(route.params.id as string);
 });
 </script>
 
 <template>
   <DeliveryHeader />
-  <DeliveryInfo />
-  <DeliverySummary />
+  <div
+    v-if="isLoading"
+    class="rounded-lg bg-(--color-surface-0) p-4 text-sm text-(--color-subtext-0)"
+  >
+    Загрузка поставки…
+  </div>
 
-  <!-- Products
-  <section class="mt-8">
-    <div class="flex items-center justify-between">
-      <h2 class="text-base font-bold text-(--color-text)">Товары</h2>
+  <div
+    v-else-if="error"
+    class="rounded-lg bg-(--color-danger)/10 p-4 text-sm text-(--color-danger)"
+  >
+    {{ error }}
+  </div>
 
-      <span class="text-xs font-medium text-(--color-subtext-0)">
-        {{ delivery.products.length }} позиции
-      </span>
-    </div>
-
-    <div
-      class="mt-3 divide-y divide-(--color-border) overflow-hidden rounded-md border border-(--color-border) bg-[var(--color-surface-0)]"
-    >
-      <div class="flex items-center justify-between gap-4 px-4 py-3.5">
-        <div class="flex min-w-0 items-center gap-3">
-          <div
-            class="flex h-9 w-9 shrink-0 items-center justify-center rounded-[10px] bg-(--color-base) text-(--color-subtext-1)"
-          >
-            <Package :size="17" />
-          </div>
-
-          <p class="truncate text-sm font-medium text-(--color-text)">
-            {{ "product.name" }}
-          </p>
-        </div>
-
-        <span class="shrink-0 text-sm font-bold text-(--color-text)">
-          × {{ "product.quantity" }}
-        </span>
-      </div>
-    </div>
-  </section> -->
+  <div v-else-if="delivery" class="space-y-6">
+    <DeliveryInfo />
+    <DeliverySummary />
+  </div>
 </template>

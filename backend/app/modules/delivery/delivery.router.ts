@@ -13,6 +13,7 @@ const service = new DeliveryService(repository);
 const controller = new DeliveryController(service);
 
 deliveryRouter.get("/", authenticate, controller.getDeliveries);
+deliveryRouter.get("/:id", authenticate, controller.getDelivery);
 deliveryRouter.post(
   "/",
   authenticate,

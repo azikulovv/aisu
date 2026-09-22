@@ -8,6 +8,13 @@ export class DeliveryService {
     return this.deliveryRepository.findAll(userId);
   }
 
+  async getByIdAndUserId(
+    deliveryId: string,
+    userId: string,
+  ): Promise<Delivery | null> {
+    return this.deliveryRepository.findByIdAndUserId(deliveryId, userId);
+  }
+
   async create(dto: ICreateDeliveryDto): Promise<Delivery | null> {
     return this.deliveryRepository.create(dto);
   }

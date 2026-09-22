@@ -18,6 +18,10 @@ export interface GetDeliveriesResponseDto {
   deliveries: DeliveryDto[];
 }
 
+export interface GetDeliveryResponseDto {
+  delivery: DeliveryDto;
+}
+
 export interface CreateDeliveryResponseDto {
   message: string;
   delivery: DeliveryDto;
