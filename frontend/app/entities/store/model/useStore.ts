@@ -1,18 +1,13 @@
+import { getStoreByUserIdAndUserId } from "../composables/api/get-store-by-id-and-userId";
 import type { StoreItem } from "../model/types";
 
 export const useStore = () => {
-  const store = useState<StoreItem | null>("state:store", () => null);
+  const storeState = useState<StoreItem | null>("state:store", () => null);
 
-  const loadStore = async () => {
-    store.value = {
-      id: "1",
-      name: "Guangzhou Trading",
-      location: "Astana",
-      deliveriesCount: 24,
-      productsCount: 1280,
-      deliveries: [],
-    };
+  const loadStore = async (storeId: string) => {
+    const { store } = await getStoreByUserIdAndUserId(storeId);
+    storeState.value = store;
   };
 
-  return { store, loadStore };
+  return { store: readonly(storeState), loadStore };
 };

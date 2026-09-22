@@ -15,7 +15,7 @@ onMounted(() => {
 
     <div class="space-y-3">
       <template v-for="(store, index) in stores" :key="index">
-        <NuxtLink :to="`/stores/${store.name}`" class="block">
+        <NuxtLink :to="`/stores/${store.id}`" class="block">
           <StoreCard :store="store" />
         </NuxtLink>
       </template>

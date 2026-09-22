@@ -8,10 +8,11 @@ definePageMeta({
   middleware: auth,
 });
 
+const route = useRoute();
 const { loadStore } = useStore();
 
 onMounted(async () => {
-  await loadStore();
+  await loadStore(route.params.id as string);
 });
 </script>
 
