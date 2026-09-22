@@ -9,6 +9,6 @@ import type {
 export const createStore = async (
   payload: ICreateStorePayload,
 ): Promise<ICreateStoreResponse> => {
-  const response = await api.post<ICreateStoreResponseDto>("/stores", payload);
+  const response = await api.post<ICreateStoreResponseDto>("/store", payload);
   return mapCreateStore(response.data);
 };
