@@ -7,6 +7,8 @@ export const api = axios.create({
 });
 
 api.interceptors.request.use((config) => {
+  config.baseURL = useRuntimeConfig().public.apiBase;
+
   const { token } = useUser();
 
   if (token.value.access) {

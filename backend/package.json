@@ -5,7 +5,8 @@
     "dev": "tsx watch app/server.ts",
     "build": "tsup",
     "start": "node build/server.js",
-    "db:migrate": "tsx app/cli/migrate.ts"
+    "db:migrate": "tsx app/cli/migrate.ts",
+    "db:migrate:run": "node build/cli/migrate.js"
   },
   "devEngines": {
     "packageManager": {
@@ -15,21 +16,21 @@
     }
   },
   "packageManager": "pnpm@12.5.1",
+  "dependencies": {
+    "argon2": "^0.45.1",
+    "cors": "^2.8.6",
+    "dotenv": "^18.0.1",
+    "express": "^5.2.1",
+    "jose": "^6.2.12",
+    "pg": "^8.23.0",
+    "valibot": "^1.5.0"
+  },
   "devDependencies": {
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
     "@types/pg": "^8.23.1",
-    "argon2": "^0.45.1",
-    "dotenv": "^18.0.1",
     "tsup": "^8.5.1",
     "tsx": "^4.23.15",
-    "typescript": "^7.0.2",
-    "valibot": "^1.5.0"
-  },
-  "dependencies": {
-    "cors": "^2.8.6",
-    "express": "^5.2.1",
-    "jose": "^6.2.12",
-    "pg": "^8.23.0"
+    "typescript": "^7.0.2"
   }
 }

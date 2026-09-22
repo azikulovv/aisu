@@ -1,7 +1,7 @@
 import { defineConfig } from "tsup";
 
 export default defineConfig({
-  entry: ["app/server.ts"],
+  entry: ["app/server.ts", "app/cli/migrate.ts"],
   outDir: "build",
   format: ["cjs"],
   target: "node22",

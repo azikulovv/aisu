@@ -23,6 +23,8 @@ const envSchema = v.object({
     v.minLength(1, "Переменная JWT_SECRET обязательна"),
   ),
 
+  POSTGRES_HOST: v.optional(v.string(), "localhost"),
+
   POSTGRES_DB: v.pipe(
     v.string(),
     v.minLength(1, "Переменная POSTGRES_DB обязательна"),
