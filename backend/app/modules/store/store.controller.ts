@@ -21,11 +21,14 @@ export class StoreController {
   createStore = async (req: Request, res: Response) => {
     const payload = req.body;
 
-    const createdStore = await this.storeService.createStore(payload);
+    const createdStore = await this.storeService.createStore({
+      ...payload,
+      user_id: req.user.userId,
+    });
 
     res.status(201).json({
-      store: createdStore,
       message: "Магазин успешно создан!",
+      store: createdStore,
     });
   };
 }

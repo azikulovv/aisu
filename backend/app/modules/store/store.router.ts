@@ -1,8 +1,16 @@
+import { authenticate } from "@app/common/middleware/auth";
+import { validate } from "@app/common/utils/validate";
 import express, { type Router } from "express";
 import { controller } from "./store.container";
+import { createStoreSchema } from "./store.schemas";
 
 export const storeRouter: Router = express.Router();
 
 storeRouter.get("/", controller.getStores);
 storeRouter.get("/:id", controller.getStore);
-storeRouter.get("/", controller.createStore);
+storeRouter.post(
+  "/",
+  authenticate,
+  validate({ body: createStoreSchema }),
+  controller.createStore,
+);
