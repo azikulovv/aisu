@@ -1,4 +1,4 @@
-import { Delivery } from "../deliveries/deliveries.interface";
+import { Delivery } from "../delivery/delivery.interface";
 
 export interface IStore {
   user_id: string;

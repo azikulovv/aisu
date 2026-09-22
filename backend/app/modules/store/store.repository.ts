@@ -1,5 +1,5 @@
 import type { Pool } from "pg";
-import type { ICreateStoreDto, IStore } from "./stores.interface";
+import type { ICreateStoreDto, IStore } from "./store.interface";
 
 export class StoreRepository {
   constructor(private readonly db: Pool) {}

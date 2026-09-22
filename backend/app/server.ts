@@ -3,10 +3,11 @@ import { corsOptions } from "@app/common/utils/cors";
 import { env } from "@app/config";
 import { pool } from "@app/infrastructure/db";
 import { authRouter } from "@app/modules/auth/auth.router";
-import { storeRouter } from "@app/modules/stores/stores.router";
+import { storeRouter } from "@app/modules/store/store.router";
 
 import cors from "cors";
 import express from "express";
+import { deliveryRouter } from "./modules/delivery/delivery.router";
 
 const app = express();
 
@@ -24,7 +25,8 @@ app.get("/health", async (_req, res) => {
 });
 
 app.use("/api/auth", authRouter);
-app.use("/api/stores", storeRouter);
+app.use("/api/store", storeRouter);
+app.use("/api/delivery", deliveryRouter);
 
 app.use((_req, res) => {
   res.status(404).json({

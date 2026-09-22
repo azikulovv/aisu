@@ -1,18 +1,18 @@
-import { DeliveriesRepository } from "../deliveries/deliveries.repository";
-import { ICreateStoreDto, IStore, IStoreItem } from "./stores.interface";
-import { StoreRepository } from "./stores.repository";
+import { DeliveryRepository } from "../delivery/delivery.repository";
+import { ICreateStoreDto, IStore, IStoreItem } from "./store.interface";
+import { StoreRepository } from "./store.repository";
 
 export class StoreService {
   constructor(
     private readonly storeRepository: StoreRepository,
-    private readonly deliveriesRepository: DeliveriesRepository,
+    private readonly deliveryRepository: DeliveryRepository,
   ) {}
 
-  async getAllStoresByUserId(userId: string): Promise<IStore[]> {
+  async getAllByUserId(userId: string): Promise<IStore[]> {
     return await this.storeRepository.findAllByUserId(userId);
   }
 
-  async getStoreByIdAndUserId(
+  async getByIdAndUserId(
     targetStoreId: string,
     userId: string,
   ): Promise<IStoreItem | null> {
@@ -22,7 +22,7 @@ export class StoreService {
     );
 
     const deliveries =
-      await this.deliveriesRepository.findAllByStoreId(targetStoreId);
+      await this.deliveryRepository.findAllByStoreId(targetStoreId);
 
     if (!store) return null;
 
@@ -32,7 +32,7 @@ export class StoreService {
     };
   }
 
-  async createStore(dto: ICreateStoreDto): Promise<IStore> {
+  async create(dto: ICreateStoreDto): Promise<IStore> {
     return await this.storeRepository.create(dto);
   }
 }

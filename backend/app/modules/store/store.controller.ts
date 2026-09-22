@@ -1,22 +1,22 @@
 import { Request, Response } from "express";
-import { StoreService } from "./stores.service";
+import { StoreService } from "./store.service";
 
 export class StoreController {
   constructor(private readonly storeService: StoreService) {}
 
-  getStoresByUserId = async (req: Request, res: Response) => {
+  getStores = async (req: Request, res: Response) => {
     const userId = req.user.userId;
 
-    const stores = await this.storeService.getAllStoresByUserId(userId);
+    const stores = await this.storeService.getAllByUserId(userId);
 
     res.json({ stores });
   };
 
-  getStoreByUserId = async (req: Request, res: Response) => {
+  getStore = async (req: Request, res: Response) => {
     const userId = req.user.userId;
     const targetStoreId = req.params.id as string;
 
-    const store = await this.storeService.getStoreByIdAndUserId(
+    const store = await this.storeService.getByIdAndUserId(
       targetStoreId,
       userId,
     );
@@ -24,10 +24,10 @@ export class StoreController {
     res.json({ store });
   };
 
-  createStore = async (req: Request, res: Response) => {
+  create = async (req: Request, res: Response) => {
     const payload = req.body;
 
-    const createdStore = await this.storeService.createStore({
+    const createdStore = await this.storeService.create({
       ...payload,
       user_id: req.user.userId,
     });
