@@ -1,8 +1,10 @@
-import { env } from "@app/common/config";
+import { errorHandler } from "@app/common/middleware/error-handler";
+import { env } from "@app/config";
 import { pool } from "@app/infrastructure/db";
+import { authRouter } from "@app/modules/auth/auth.router";
+import { storeRouter } from "@app/modules/store/store.router";
+
 import express from "express";
-import { authRouter } from "./modules/auth/auth.router";
-import { storeRouter } from "./modules/store/store.router";
 
 const app = express();
 
@@ -17,6 +19,17 @@ app.get("/health", async (_req, res) => {
 
 app.use("/api/auth", authRouter);
 app.use("/api/stores", storeRouter);
+
+app.use((_req, res) => {
+  res.status(404).json({
+    error: {
+      code: "NOT_FOUND",
+      message: "Маршрут не найден",
+    },
+  });
+});
+
+app.use(errorHandler);
 
 app.listen(env.PORT, () => {
   console.log(`Сервер запущен: http://localhost:${env.PORT}`);

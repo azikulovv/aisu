@@ -1,4 +1,4 @@
-import { env } from "@app/common/config";
+import { env } from "@app/config";
 import { Pool } from "pg";
 
 export const pool = new Pool({
