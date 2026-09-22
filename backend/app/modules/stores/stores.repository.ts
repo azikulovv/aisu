@@ -1,5 +1,5 @@
 import type { Pool } from "pg";
-import type { ICreateStoreDto, IStore } from "./store.interface";
+import type { ICreateStoreDto, IStore } from "./stores.interface";
 
 export class StoreRepository {
   constructor(private readonly db: Pool) {}
@@ -17,15 +17,18 @@ export class StoreRepository {
     return response.rows;
   }
 
-  async findById(targetStoreId: string): Promise<IStore | null> {
+  async findByIdAndUserId(
+    targetStoreId: string,
+    userId: string,
+  ): Promise<IStore | null> {
     const response = await this.db.query<IStore>(
       `
       SELECT id, name, location, updated_at, created_at
       FROM stores
-      WHERE id = $1
+      WHERE id = $1 AND user_id = $2
       LIMIT 1;
     `,
-      [targetStoreId],
+      [targetStoreId, userId],
     );
 
     return response.rows[0] ?? null;

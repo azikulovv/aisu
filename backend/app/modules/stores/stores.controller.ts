@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { StoreService } from "./store.service";
+import { StoreService } from "./stores.service";
 
 export class StoreController {
   constructor(private readonly storeService: StoreService) {}
@@ -12,10 +12,14 @@ export class StoreController {
     res.json({ stores });
   };
 
-  getStore = async (req: Request, res: Response) => {
+  getStoreByUserId = async (req: Request, res: Response) => {
+    const userId = req.user.userId;
     const targetStoreId = req.params.id as string;
 
-    const store = await this.storeService.getStoreById(targetStoreId);
+    const store = await this.storeService.getStoreByIdAndUserId(
+      targetStoreId,
+      userId,
+    );
 
     res.json({ store });
   };

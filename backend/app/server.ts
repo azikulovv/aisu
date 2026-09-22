@@ -3,7 +3,7 @@ import { corsOptions } from "@app/common/utils/cors";
 import { env } from "@app/config";
 import { pool } from "@app/infrastructure/db";
 import { authRouter } from "@app/modules/auth/auth.router";
-import { storeRouter } from "@app/modules/store/store.router";
+import { storeRouter } from "@app/modules/stores/stores.router";
 
 import cors from "cors";
 import express from "express";
