@@ -1,4 +1,4 @@
-import type { Store } from "../domain/types";
+import type { Store } from "../model/types";
 
 export const useStores = () => {
   const stores = useState<Store[]>("state:stores", () => []);

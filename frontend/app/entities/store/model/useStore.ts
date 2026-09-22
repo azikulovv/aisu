@@ -1,4 +1,4 @@
-import type { StoreItem } from "../domain/types";
+import type { StoreItem } from "../model/types";
 
 export const useStore = () => {
   const store = useState<StoreItem | null>("state:store", () => null);

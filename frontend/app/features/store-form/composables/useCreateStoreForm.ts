@@ -1,3 +1,5 @@
+import { createStore } from "~/entities/store/composables/api/create-store";
+
 export interface Form {
   name: string;
   location: string;
@@ -15,16 +17,8 @@ export const useCreateStoreForm = () => {
     isSubmitting.value = true;
 
     try {
-      console.log(form.value);
-
-      // await $fetch('/api/deliveries', {
-      //   method: 'POST',
-      //   body: payload,
-      // })
-
-      await new Promise((resolve) => setTimeout(resolve, 500));
-
-      // await navigateTo("/deliveries");
+      await createStore(form.value);
+      await navigateTo("/stores");
     } finally {
       isSubmitting.value = false;
     }

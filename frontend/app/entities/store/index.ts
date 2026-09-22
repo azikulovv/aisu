@@ -1,4 +1,4 @@
 export { default as StoreCard } from "./ui/store-card.vue";
 
-export { useStore } from "./composables/useStore.ts";
-export { useStores } from "./composables/useStores.ts";
+export { useStore } from "./model/useStore.ts";
+export { useStores } from "./model/useStores.ts";

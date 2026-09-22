@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ChevronRight } from "lucide-vue-next";
-import type { Store } from "../domain/types";
+import type { Store } from "../model/types";
 
 defineProps<{ store: Store }>();
 </script>
