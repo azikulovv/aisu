@@ -17,6 +17,7 @@ const { form, isSubmitting, submit } = useSignin();
       v-model="form.email"
       placeholder="Введите вашу почту"
     />
+
     <BaseInput
       label="Пароль"
       v-model="form.password"

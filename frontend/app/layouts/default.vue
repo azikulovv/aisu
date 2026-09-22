@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import BottomNavigation from "~/widgets/navigation/ui/BottomNavigation.vue";
+import { BottomNavigation } from "~/widgets/navigation";
 </script>
 
 <template>

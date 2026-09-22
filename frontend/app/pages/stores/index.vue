@@ -1,6 +1,11 @@
 <script setup lang="ts">
+import auth from '~/midlleware/auth';
 import { BaseButton } from "~/shared/ui";
 import { StoreList } from "~/widgets/store";
+
+definePageMeta({
+  middleware: auth,
+});
 </script>
 
 <template>

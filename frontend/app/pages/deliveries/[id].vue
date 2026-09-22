@@ -1,10 +1,15 @@
 <script setup lang="ts">
 import { useDelivery } from "~/entities/delivery";
+import auth from '~/midlleware/auth';
 import {
   DeliveryHeader,
   DeliveryInfo,
   DeliverySummary,
 } from "~/widgets/detail-delivery";
+
+definePageMeta({
+  middleware: auth,
+});
 
 const { loadDelivery } = useDelivery();
 

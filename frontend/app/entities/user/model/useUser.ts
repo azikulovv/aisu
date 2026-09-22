@@ -15,5 +15,10 @@ export const useUser = () => {
     tokenState.value.access = token;
   };
 
-  return { user: readonly(userState), setUser, setToken };
+  return {
+    user: readonly(userState),
+    token: readonly(tokenState.value),
+    setUser,
+    setToken,
+  };
 };

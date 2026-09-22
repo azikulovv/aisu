@@ -1,6 +1,11 @@
 <script setup lang="ts">
+import auth from "~/midlleware/auth";
 import BaseButton from "~/shared/ui/base-button.vue";
 import { Deliveries } from "~/widgets/delivery";
+
+definePageMeta({
+  middleware: auth,
+});
 </script>
 
 <template>

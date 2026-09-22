@@ -7,7 +7,7 @@ interface Form {
 }
 
 export const useSignin = () => {
-  const { setUser } = useUser();
+  const { setUser, setToken } = useUser();
 
   const form = ref<Form>({
     email: "",
@@ -26,8 +26,12 @@ export const useSignin = () => {
       });
 
       setUser(response.user);
+      setToken(response.accessToken);
 
       navigateTo("/");
+      console.log();
+    } catch (e) {
+      console.error(e);
     } finally {
       isSubmitting.value = false;
     }

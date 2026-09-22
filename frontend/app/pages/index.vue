@@ -1,4 +1,10 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import auth from "~/midlleware/auth";
+
+definePageMeta({
+  middleware: auth,
+});
+</script>
 
 <template>
   <h1
