@@ -2,7 +2,11 @@
 import { DeliveryCard, useDeliveries } from "~/entities/delivery";
 import { EmptyState } from "~/widgets/empty-state";
 
-const { deliveries } = useDeliveries();
+const { deliveries, loadDeliveries } = useDeliveries();
+
+onMounted(() => {
+  loadDeliveries();
+});
 </script>
 
 <template>

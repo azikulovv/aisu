@@ -1,11 +1,11 @@
 import { api } from "~/shared/api/client";
 import type { IGetStoreByIdAndUserIdResponse } from "./types";
 
-export const getStoreByUserIdAndUserId = async (
+export const getStore = async (
   storeId: string,
 ): Promise<IGetStoreByIdAndUserIdResponse> => {
   const response = await api.get<IGetStoreByIdAndUserIdResponse>(
-    `/stores/${storeId}`,
+    `/store/${storeId}`,
   );
   return response.data;
 };

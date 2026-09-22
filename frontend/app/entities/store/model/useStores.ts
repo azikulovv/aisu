@@ -1,11 +1,11 @@
-import { getStoresByUserId } from "../composables/api/get-stores-by-userId";
+import { getStores } from "../composables/api/get-stores";
 import type { Store } from "../model/types";
 
 export const useStores = () => {
   const storesState = useState<Store[]>("state:stores", () => []);
 
   const loadStores = async () => {
-    const { stores } = await getStoresByUserId();
+    const { stores } = await getStores();
 
     storesState.value = stores ?? [];
   };

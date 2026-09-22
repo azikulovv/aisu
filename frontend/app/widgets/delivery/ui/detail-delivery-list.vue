@@ -3,11 +3,10 @@ import { Truck } from "lucide-vue-next";
 import { HistoryDeliveryCard, useDeliveries } from "~/entities/delivery";
 import { EmptyState } from "~/widgets/empty-state";
 
-const route = useRoute();
 const { deliveries, loadDeliveries } = useDeliveries();
 
 onMounted(() => {
-  loadDeliveries(route.params.id as string);
+  loadDeliveries();
 });
 </script>
 
