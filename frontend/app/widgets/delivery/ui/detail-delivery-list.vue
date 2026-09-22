@@ -1,11 +1,13 @@
 <script lang="ts" setup>
 import { Truck } from "lucide-vue-next";
 import { HistoryDeliveryCard, useDeliveries } from "~/entities/delivery";
+import { EmptyState } from "~/widgets/empty-state";
 
+const route = useRoute();
 const { deliveries, loadDeliveries } = useDeliveries();
 
 onMounted(() => {
-  loadDeliveries("storeId");
+  loadDeliveries(route.params.id as string);
 });
 </script>
 
@@ -17,12 +19,18 @@ onMounted(() => {
       <h2 class="text-base font-bold">История поставок</h2>
     </div>
 
-    <div class="space-y-2">
+    <div class="space-y-2" v-if="deliveries.length">
       <template v-for="(delivery, index) in deliveries" :key="index">
         <NuxtLink :to="`/deliveries/${delivery.id}`">
           <HistoryDeliveryCard :delivery="delivery" />
         </NuxtLink>
       </template>
     </div>
+
+    <EmptyState
+      v-else
+      title="У вас пока нет доставок"
+      description="Создайте первую доставку"
+    />
   </section>
 </template>
