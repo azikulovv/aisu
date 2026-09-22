@@ -15,7 +15,7 @@ export async function createAccessToken(userId: string) {
       alg: "HS256",
     })
     .setIssuedAt()
-    .setExpirationTime("15m")
+    .setExpirationTime("7d")
     .sign(secret);
 }
 
