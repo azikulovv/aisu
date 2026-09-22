@@ -7,7 +7,7 @@ export class DeliveryRepository {
   async findAllByStoreId(id: string): Promise<Delivery[]> {
     const response = await this.db.query<Delivery>(
       `
-      SELECT id, store_id, product_name, is_paid, created_at, updated_at
+      SELECT id, user_id, store_id, product_name, is_paid, created_at, updated_at
       FROM deliveries
       WHERE store_id = $1
       ORDER BY created_at DESC;
@@ -21,7 +21,7 @@ export class DeliveryRepository {
   async findAll(id: string): Promise<Delivery[]> {
     const response = await this.db.query<Delivery>(
       `
-      SELECT id, user_id, product_name, is_paid, created_at, updated_at
+      SELECT id, user_id, store_id, product_name, is_paid, created_at, updated_at
       FROM deliveries
       WHERE user_id = $1
       ORDER BY created_at DESC;

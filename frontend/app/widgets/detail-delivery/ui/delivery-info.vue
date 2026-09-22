@@ -12,7 +12,7 @@ const { delivery } = useDelivery();
         <p class="text-xs font-medium text-(--color-subtext-0)">Поставка</p>
 
         <h1 class="mt-1 text-xl font-bold tracking-tight text-(--color-text)">
-          {{ delivery?.companyName }}
+          {{ delivery?.storeId }}
         </h1>
       </div>
 

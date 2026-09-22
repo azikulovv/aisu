@@ -21,7 +21,7 @@ defineProps<{ delivery: Delivery }>();
         >
           <Package :size="13" />
 
-          <span> {{ delivery.productsCount }} шт. </span>
+          <span>{{ delivery.storeId }}</span>
         </div>
       </div>
 
@@ -45,7 +45,7 @@ defineProps<{ delivery: Delivery }>();
 
     <!-- Date -->
     <div class="mt-3 text-xs text-(--color-subtext-0)">
-      {{ delivery.updatedAt }}
+      {{ delivery.createdAt }}
       <span class="mx-1">·</span>
       {{ delivery.updatedAt }}
     </div>

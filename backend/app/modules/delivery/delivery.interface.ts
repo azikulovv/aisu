@@ -15,3 +15,9 @@ export interface ICreateDeliveryDto {
   product_name: string;
   is_paid: boolean;
 }
+
+export interface ICreateDeliveryRequest {
+  storeId: string;
+  productName: string;
+  isPaid: boolean;
+}

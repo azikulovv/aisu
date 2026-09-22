@@ -1,8 +1,7 @@
 export interface Delivery {
   id: string;
-  companyName: string;
+  storeId: string;
   productName: string;
-  productsCount: number;
   isPaid: boolean;
   createdAt: string;
   updatedAt: string;

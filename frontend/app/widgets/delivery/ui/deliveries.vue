@@ -13,9 +13,9 @@ onMounted(() => {
   <div class="space-y-2">
     <p class="text-sm font-semibold text-(--color-text)">Все доставки</p>
 
-    <div class="space-y-3" v-if="!deliveries?.length">
+    <div class="space-y-3" v-if="deliveries.length">
       <template v-for="(delivery, index) in deliveries" :key="index">
-        <NuxtLink :to="`/deliveries/${delivery.productName}`" class="block">
+        <NuxtLink :to="`/deliveries/${delivery.id}`" class="block">
           <DeliveryCard :delivery="delivery" />
         </NuxtLink>
       </template>

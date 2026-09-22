@@ -6,9 +6,8 @@ export const useDelivery = () => {
   const loadDelivery = async (deliveryId: string) => {
     delivery.value = {
       id: "1",
-      companyName: "Guangzhou Trading Co.",
+      storeId: "store-1",
       productName: "Apple AirPods Pro 2",
-      productsCount: 120,
       isPaid: false,
       createdAt: "createdat",
       updatedAt: "updatedat",

@@ -1,7 +1,10 @@
 import { api } from "~/shared/api/client";
+import { mapDelivery } from "../domain/mapper";
+import type { Delivery } from "../domain/types";
+import type { GetDeliveriesResponseDto } from "./types";
 
-export const getDeliveries = async () => {
-  const resposne = await api.get(`/delivery`);
+export const getDeliveries = async (): Promise<Delivery[]> => {
+  const response = await api.get<GetDeliveriesResponseDto>("/delivery");
 
-  return resposne.data;
+  return response.data.deliveries.map(mapDelivery);
 };

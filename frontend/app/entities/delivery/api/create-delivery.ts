@@ -1,8 +1,18 @@
 import { api } from "~/shared/api/client";
-import type { CreateDeliveryPayload } from "./types";
+import { mapDelivery } from "../domain/mapper";
+import type { Delivery } from "../domain/types";
+import type {
+  CreateDeliveryPayload,
+  CreateDeliveryResponseDto,
+} from "./types";
 
 export const createDelivery = async (
   payload: CreateDeliveryPayload,
-): Promise<void> => {
-  await api.post("/delivery", payload);
+): Promise<Delivery> => {
+  const response = await api.post<CreateDeliveryResponseDto>(
+    "/delivery",
+    payload,
+  );
+
+  return mapDelivery(response.data.delivery);
 };

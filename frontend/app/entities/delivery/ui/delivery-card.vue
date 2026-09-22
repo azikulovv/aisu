@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import type { Delivery } from '../domain/types';
-
+import type { Delivery } from "../domain/types";
 
 defineProps<{ delivery: Delivery }>();
 </script>
@@ -9,10 +8,10 @@ defineProps<{ delivery: Delivery }>();
   <article
     class="w-full rounded-lg border border-(--color-border) bg-(--color-surface-0) p-4 font-(--font-sans) shadow-(--shadow-sm)"
   >
-    <!-- Company + status -->
+    <!-- Store + status -->
     <div class="flex items-center justify-between gap-3">
       <h3 class="truncate text-base font-bold text-(--color-text)">
-        {{ delivery.companyName }}
+        {{ delivery.storeId }}
       </h3>
 
       <span
@@ -34,28 +33,8 @@ defineProps<{ delivery: Delivery }>();
     </p>
 
     <!-- Meta -->
-    <div class="mt-4 flex items-end justify-between">
-      <div>
-        <p
-          class="text-[11px] font-medium uppercase tracking-wide text-(--color-subtext-0)"
-        >
-          Количество
-        </p>
-
-        <p class="mt-0.5 text-lg font-bold text-(--color-primary)">
-          {{ delivery.productsCount }}
-        </p>
-      </div>
-
-      <div class="text-right">
-        <p class="text-sm font-medium text-(--color-text)">
-          {{ delivery.deliveryDate }}
-        </p>
-
-        <p class="mt-0.5 text-xs text-(--color-subtext-0)">
-          {{ delivery.deliveryTime }}
-        </p>
-      </div>
+    <div class="mt-4 text-xs text-(--color-subtext-0)">
+      {{ delivery.createdAt }}
     </div>
   </article>
 </template>
