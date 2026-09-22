@@ -1,11 +1,14 @@
+import { getStoresByUserId } from "../composables/api/get-stores-by-userId";
 import type { Store } from "../model/types";
 
 export const useStores = () => {
-  const stores = useState<Store[]>("state:stores", () => []);
+  const storesState = useState<Store[]>("state:stores", () => []);
 
   const loadStores = async () => {
-    stores.value = [];
+    const { stores } = await getStoresByUserId();
+
+    storesState.value = stores ?? [];
   };
 
-  return { stores, loadStores };
+  return { stores: readonly(storesState), loadStores };
 };

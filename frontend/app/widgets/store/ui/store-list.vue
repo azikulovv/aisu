@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { StoreCard, useStores } from "~/entities/store";
-import EmptyState from "~/widgets/empty-state/ui/empty-state.vue";
+import { EmptyState } from "~/widgets/empty-state";
 
 const { stores, loadStores } = useStores();
 
@@ -10,7 +10,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="space-y-2" v-if="stores.length">
+  <div class="space-y-2" v-if="stores?.length">
     <p class="text-sm font-semibold text-(--color-text)">Все магазины</p>
 
     <div class="space-y-3">

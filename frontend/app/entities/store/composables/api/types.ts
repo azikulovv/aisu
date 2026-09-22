@@ -1,3 +1,5 @@
+import type { Store } from "../../model/types";
+
 export interface ICreateStorePayload {
   name: string;
   location: string;
@@ -23,4 +25,8 @@ export interface ICreateStoreResponseDto {
     updated_at: string;
     created_at: string;
   };
+}
+
+export interface IGetStoresByUserIdResponse {
+  stores: Store[];
 }
