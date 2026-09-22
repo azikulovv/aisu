@@ -9,7 +9,7 @@ definePageMeta({
 });
 
 const route = useRoute();
-const { loadStore } = useStore();
+const { store, loadStore } = useStore();
 
 onMounted(async () => {
   await loadStore(route.params.id as string);
@@ -19,5 +19,8 @@ onMounted(async () => {
 <template>
   <DetailStoreHeader />
   <DetailStoreInfo />
-  <DetailDeliveryList class="mt-7" />
+  <DetailDeliveryList
+    :deliveries="store?.deliveries ?? []"
+    class="mt-7"
+  />
 </template>

@@ -20,6 +20,13 @@ const { form, isSubmitting, storeOptions, submit } = useCreateDeliveryForm();
       placeholder="Введите название продукта"
     />
 
+    <BaseInput
+      v-model="form.quantity"
+      label="Количество товаров"
+      type="number"
+      placeholder="Введите количество"
+    />
+
     <div
       class="flex items-center justify-between rounded-md border border-(--color-border) bg-(--color-surface-0) px-4 py-3"
     >

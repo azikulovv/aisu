@@ -1,3 +1,4 @@
+import type { DeliveryDto } from "~/entities/delivery/api/types";
 import type { Store, StoreItem } from "../../model/types";
 
 export interface ICreateStorePayload {
@@ -42,6 +43,6 @@ export interface IGetStoreByIdAndUserIdResponseDto {
     location: string;
     updated_at: string;
     created_at: string;
-    deliveries: [];
+    deliveries: DeliveryDto[];
   };
 }

@@ -16,7 +16,7 @@ app.use(cors(corsOptions));
 app.options(/.*/, cors(corsOptions));
 
 app.get("/health", async (_req, res) => {
-  await pool.connect();
+  await pool.query("SELECT 1");
 
   res.json({
     api: "ok",

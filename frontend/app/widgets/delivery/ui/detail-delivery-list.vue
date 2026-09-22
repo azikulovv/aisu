@@ -1,13 +1,10 @@
 <script lang="ts" setup>
 import { Truck } from "lucide-vue-next";
-import { HistoryDeliveryCard, useDeliveries } from "~/entities/delivery";
+import { HistoryDeliveryCard } from "~/entities/delivery";
+import type { Delivery } from "~/entities/delivery/domain/types";
 import { EmptyState } from "~/widgets/empty-state";
 
-const { deliveries, loadDeliveries } = useDeliveries();
-
-onMounted(() => {
-  loadDeliveries();
-});
+defineProps<{ deliveries: Delivery[] }>();
 </script>
 
 <template>

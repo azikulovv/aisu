@@ -11,7 +11,7 @@ defineProps<{ delivery: Delivery }>();
     <!-- Store + status -->
     <div class="flex items-center justify-between gap-3">
       <h3 class="truncate text-base font-bold text-(--color-text)">
-        {{ delivery.storeId }}
+        {{ delivery.storeName }}
       </h3>
 
       <span
@@ -34,7 +34,7 @@ defineProps<{ delivery: Delivery }>();
 
     <!-- Meta -->
     <div class="mt-4 text-xs text-(--color-subtext-0)">
-      {{ delivery.createdAt }}
+          {{ delivery.quantity }} шт.
     </div>
   </article>
 </template>

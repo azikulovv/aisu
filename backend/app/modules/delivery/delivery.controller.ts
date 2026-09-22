@@ -1,6 +1,9 @@
 import { notFound } from "@app/common/errors/app-error";
 import type { Request, Response } from "express";
-import type { ICreateDeliveryRequest } from "./delivery.interface";
+import type {
+  ICreateDeliveryRequest,
+  IUpdateDeliveryPaymentRequest,
+} from "./delivery.interface";
 import type { DeliveryService } from "./delivery.service";
 
 export class DeliveryController {
@@ -38,6 +41,7 @@ export class DeliveryController {
       user_id: req.user.userId,
       store_id: req.body.storeId,
       product_name: req.body.productName,
+      quantity: req.body.quantity,
       is_paid: req.body.isPaid,
     });
 
@@ -49,5 +53,26 @@ export class DeliveryController {
       message: "Доставка успешно создана!",
       delivery,
     });
+  };
+
+  updatePayment = async (
+    req: Request<
+      { id: string },
+      unknown,
+      IUpdateDeliveryPaymentRequest
+    >,
+    res: Response,
+  ) => {
+    const delivery = await this.deliveryService.updatePayment(
+      req.params.id,
+      req.user.userId,
+      req.body.isPaid,
+    );
+
+    if (!delivery) {
+      throw notFound("Доставка не найдена");
+    }
+
+    res.json({ delivery });
   };
 }

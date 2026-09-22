@@ -18,7 +18,15 @@ const { delivery } = useDelivery();
       <p class="text-xs font-medium text-(--color-subtext-0)">Магазин</p>
 
       <p class="mt-1 truncate text-sm font-bold text-(--color-text)">
-        {{ delivery?.storeId }}
+        {{ delivery?.storeName }}
+      </p>
+    </div>
+
+    <div class="rounded-md bg-(--color-surface-0) p-4">
+      <p class="text-xs font-medium text-(--color-subtext-0)">Количество</p>
+
+      <p class="mt-1 text-sm font-bold text-(--color-text)">
+        {{ delivery?.quantity }} шт.
       </p>
     </div>
   </section>

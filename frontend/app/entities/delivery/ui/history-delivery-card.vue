@@ -21,7 +21,7 @@ defineProps<{ delivery: Delivery }>();
         >
           <Package :size="13" />
 
-          <span>{{ delivery.storeId }}</span>
+          <span>{{ delivery.quantity }} шт.</span>
         </div>
       </div>
 

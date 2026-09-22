@@ -21,8 +21,10 @@ export class StoreService {
       userId,
     );
 
-    const deliveries =
-      await this.deliveryRepository.findAllByStoreId(targetStoreId);
+    const deliveries = await this.deliveryRepository.findAllByStoreIdAndUserId(
+      targetStoreId,
+      userId,
+    );
 
     if (!store) return null;
 

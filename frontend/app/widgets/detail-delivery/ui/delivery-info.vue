@@ -2,7 +2,13 @@
 import { Check, Clock3, X } from "lucide-vue-next";
 import { useDelivery } from "~/entities/delivery";
 
-const { delivery } = useDelivery();
+const { delivery, isUpdatingPayment, updatePayment } = useDelivery();
+
+const togglePayment = () => {
+  if (delivery.value) {
+    void updatePayment(!delivery.value.isPaid);
+  }
+};
 </script>
 
 <template>
@@ -12,17 +18,22 @@ const { delivery } = useDelivery();
         <p class="text-xs font-medium text-(--color-subtext-0)">Поставка</p>
 
         <h1 class="mt-1 text-xl font-bold tracking-tight text-(--color-text)">
-          {{ delivery?.storeId }}
+          {{ delivery?.storeName }}
         </h1>
       </div>
 
-      <span
+      <button
+        type="button"
+        role="switch"
+        :aria-checked="delivery?.isPaid"
+        :disabled="isUpdatingPayment"
         class="flex shrink-0 items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-semibold"
         :class="
           delivery?.isPaid
             ? 'bg-(--color-success)/10 text-(--color-success)'
             : 'bg-(--color-danger)/10 text-(--color-danger)'
         "
+        @click="togglePayment"
       >
         <template v-if="delivery?.isPaid">
           <Check :size="13" />
@@ -32,7 +43,7 @@ const { delivery } = useDelivery();
           <X :size="13" />
           Не оплачено
         </template>
-      </span>
+      </button>
     </div>
 
     <div class="mt-5 flex items-center gap-3 text-sm">

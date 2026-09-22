@@ -15,6 +15,14 @@ export class DeliveryService {
     return this.deliveryRepository.findByIdAndUserId(deliveryId, userId);
   }
 
+  async updatePayment(
+    deliveryId: string,
+    userId: string,
+    isPaid: boolean,
+  ): Promise<Delivery | null> {
+    return this.deliveryRepository.updatePayment(deliveryId, userId, isPaid);
+  }
+
   async create(dto: ICreateDeliveryDto): Promise<Delivery | null> {
     return this.deliveryRepository.create(dto);
   }

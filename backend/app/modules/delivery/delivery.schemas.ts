@@ -13,5 +13,14 @@ export const createDeliverySchema = v.object({
       "Название продукта должно содержать максимум 255 символов",
     ),
   ),
+  quantity: v.pipe(
+    v.number("Количество обязательно"),
+    v.integer("Количество должно быть целым числом"),
+    v.minValue(1, "Количество должно быть не меньше 1"),
+  ),
+  isPaid: v.boolean(),
+});
+
+export const updateDeliveryPaymentSchema = v.object({
   isPaid: v.boolean(),
 });
